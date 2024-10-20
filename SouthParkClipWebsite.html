@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Video Player</title>
+  <style>
+    body {
+      background-color: #1a1a1a; /* Near black, dark grey */
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    video {
+      width: 80%;
+      max-width: 1000px;
+      border: 2px solid #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Default HTML5 Video Player -->
+  <video id="randomVideo" controls autoplay muted="false">
+    <source id="videoSource" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <script>
+    // List of your specific video files and corresponding titles
+    const videos = [
+      { src: '01 SouthParkClip.mp4', title: 'You rack a dis-a-prin' },
+      { src: '02 SouthParkClip.mp4', title: 'You all need more dis-a-prin' },
+      { src: '03 SouthParkClip.mp4', title: 'True dis-a-prin come from within' },
+      { src: '04 SouthParkClip.mp4', title: 'I\'d say that your dad racks a dis-a-prin' },
+      { src: '05 SouthParkClip.mp4', title: 'He just needs a dis-a-prin' },
+      { src: '06 SouthParkClip.mp4', title: 'Dis-a-prin... come from within' }
+    ];
+
+    function playRandomVideo() {
+      const randomIndex = Math.floor(Math.random() * videos.length);
+      const selectedVideo = videos[randomIndex];
+
+      // Set the randomly selected video
+      const videoElement = document.getElementById('videoSource');
+      videoElement.src = selectedVideo.src;
+
+      // Change the page title to the custom title
+      document.title = selectedVideo.title;
+
+      // Ensure the video is unmuted and autoplay
+      const video = document.getElementById('randomVideo');
+      video.muted = false;  // Unmute the video
+      video.load();  // Load the new video
+      video.play();  // Autoplay the video
+    }
+
+    // Play a random video when the page loads
+    window.onload = playRandomVideo;
+  </script>
+
+</body>
+</html>
